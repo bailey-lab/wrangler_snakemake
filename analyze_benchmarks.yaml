@@ -1,0 +1,10 @@
+sample_counts:
+  - 10
+  - 20
+  - 40
+  - 80
+cpu_counts:
+  - 10
+  - 20
+  - 30
+basal_memory: 21.7

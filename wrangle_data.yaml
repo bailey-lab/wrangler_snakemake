@@ -1,0 +1,14 @@
+output_folder: /home/alfred/big_data/Mikalayi_sample6_DR2
+wrangler_dir: wrangler
+analysis_dir: downsample_sample6_200000000000000000umi_22_cpu
+umi_threshold: 200000000000000000
+ss_reduction_size: all
+cpu_count: 22
+input_sample_sheet: mikalayi_merged_sample_sheet_sample6.tsv
+project_resources: project_resources/DR2
+fastq_dir: seekdeep_mergedfastq
+miptools_sif: miptools_dev.sif
+probe_sets_used: IBC
+sample_sets_used: JJJ
+experiment_id: 210422
+min_capture_length: 30
