@@ -2,6 +2,9 @@
 After all benchmarking steps have finished running, this workflow creates a
 database out of all the run times, memory usages, and io wait times, and plots
 the output in plotly.
+
+This program needs a lot of improvement - a lot of run-specific info that should
+go in the yaml file is currently hard-coded in the smk file
 '''
 configfile: 'input_files/analyze_benchmarks.yaml'
 
