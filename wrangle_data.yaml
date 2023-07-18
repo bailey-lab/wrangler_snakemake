@@ -1,10 +1,11 @@
 output_folder: /home/alfred/big_data/Mikalayi_runs/all_study_sites_DR2_200000000000000000umi_22_cpu
+analysis_dir: all_study_sites_DR2_200000000000000000umi_22_cpu_snakemake
 umi_threshold: 200000000000000000
 cpu_count: 22
 input_sample_sheet: /home/alfred/test_miptools_SSD/mikalayi_merged_sample_sheet_all_sites.tsv
 project_resources: /home/alfred/test_miptools_SSD/project_resources/DR2
-fastq_dir: seekdeep_mergedfastq
-miptools_sif: miptools_dev.sif
+fastq_dir: /home/alfred/test_miptools_SSD/seekdeep_mergedfastq
+miptools_sif: /home/alfred/test_miptools_SSD/miptools_dev.sif
 probe_sets_used: DR2
 sample_sets_used: JJJ
 experiment_id: 230716
