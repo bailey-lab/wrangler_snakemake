@@ -27,17 +27,10 @@ rule generate_mip_files:
 	given that I'm repackaging miptools wrangler (so wrangler.sh is not needed)
 	and that the existing generate_wrangler_scripts.py seems unnecessarily
 	convoluted and that only two files are needed by subsequent steps
-	(mipArms.txt and allMipsSamplesNames.tab.txt) it's tempting to write my own
-	script for this. Script needs:
-	1. probe set being used
-	2. file that contains mip_id, mip_family, extension_arm, ligation_arm,
-	extension_barcode_length, ligation_barcode_length, gene_name, mipset of each
-	probe
-	3. names of samples being used (pulled from sample_sets column of sample
-	sheet)
-	mipArms.txt will have all components of part 2 as columns
-	allMipsSamplesNames.tab.txt will have all mip_families and all samples as 2
-	columns
+	(mipArms.txt and allMipsSamplesNames.tab.txt) I wrote my own
+	script for this. Input is an arms file and a sample sheet. Output is an arms
+	file with rearranged columns and a two column file with names of all mips
+	and names of all samples (with no pairing between columns of any given row).
 	'''
 	input:
 		arms_file=config['project_resources']+'/mip_ids/mip_arms.txt',
