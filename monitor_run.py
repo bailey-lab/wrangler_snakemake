@@ -3,7 +3,7 @@ import subprocess
 import yaml
 elapsed_time=0
 config=yaml.safe_load(open('wrangle_data.yaml'))
-output_dir=config['output_folder']+'/'+config['wrangler_dir']+'/'+config['analysis_dir']+'_run_stats'
+output_dir=config['output_folder']+'/'+config['analysis_dir']+'_run_stats'
 subprocess.call(['mkdir', '-p', output_dir])
 start_time=time.time()
 still_running=True
@@ -48,7 +48,7 @@ while still_running:
 	elapsed_time=current-start_time
 	try:
 		output_file=open(output_path, 'a')
-		subprocess.check_output('pgrep -u '+'alfred'+' snakemake', shell=True)
+		subprocess.check_output('pgrep -u '+'asimkin'+' snakemake', shell=True)
 		memory=get_memory()
 		storage=get_storage()
 		iowait=get_io()

@@ -21,10 +21,29 @@ The program consists of the following components:
 The program is currently a little rough around the edges. I'm providing it here
 mostly to organize my own files, but I hope others might find it useful as well.
 
+## Installation:
+ - Install conda: https://github.com/conda-forge/miniforge#unix-like-platforms-mac-os--linux.
+You'll need to follow the instructions to 'initialize' the conda environment at the end of the
+installer, then sign out and back in again.
+ - Create a conda environment and install snakemake there:
+```bash
+mamba create -c conda-forge -c bioconda -n snakemake snakemake
+conda activate snakemake
+```
 
-## Instructions for running
+### Setup your environment:
+ - Change directory to a folder where you want to run the analysis
+ - Download the wrangle_data.smk file into this folder
+ - Download the wrangle_data.yaml file into the same folder
 
- - Download this repository to a folder of your choosing
- - Edit the wrangle_data.yaml file using instructions in the file
- - Obtain snakemake as a conda environment and activate it
- - run snakemake, e.g. snakemake -s wrangle_data.smk
+
+## Usage:
+ - Edit the config.yaml file using the instructions in the comments. Use a text editor that outputs unix line endings (e.g. vscode, notepad++, gedit, micro, emacs, vim, vi, etc.)
+ - If snakemake is not your active conda environment, activate snakemake with:
+```bash
+conda activate snakemake
+```
+ - Run snakemake with:
+```bash
+snakemake -s wrangle_data.smk --cores [your_desired_core_count]
+```

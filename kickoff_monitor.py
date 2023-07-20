@@ -5,6 +5,6 @@ def kickoff_job(string):
 	import subprocess
 	subprocess.call(string, shell=True)
 
-string_list=['snakemake -s wrangle_data.smk --cores 24', 'python3 monitor_run.py']
+string_list=['snakemake -s wrangle_data.smk --cores 12', 'python3 monitor_run.py']
 
 thread_map(kickoff_job, string_list)
