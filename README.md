@@ -47,3 +47,12 @@ conda activate snakemake
 ```bash
 snakemake -s wrangle_data.smk --cores [your_desired_core_count]
 ```
+## partial running of files:
+To run a part of this pipeline without running the whole thing, you can specify
+an output file along with the snakemake command, and the pipeline will only run
+far enough to generate these output files. For example, if you've set your
+output folder as /nfs/jbailey5/baileyweb/asimkin/wrangler_output and your
+analysis_dir as test_run, you could enter this command to see only the output
+that is produced when extraction finishes:
+snakemake -s wrangle_data.smk /nfs/jbailey5/baileyweb/asimkin/wrangler_output/test_run/extraction_finished.txt --cores 10
+
