@@ -54,5 +54,6 @@ far enough to generate these output files. For example, if you've set your
 output folder as /nfs/jbailey5/baileyweb/asimkin/wrangler_output and your
 analysis_dir as test_run, you could enter this command to see only the output
 that is produced when extraction finishes:
+```bash
 snakemake -s wrangle_data.smk /nfs/jbailey5/baileyweb/asimkin/wrangler_output/test_run/extraction_finished.txt --cores 10
-
+```
