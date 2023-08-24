@@ -62,7 +62,7 @@ rule setup_and_extract_by_arm:
 		-B {params.wrangler_dir}:/opt/analysis \
 		-B {params.fastq_dir}:/opt/data \
 		{params.sif_file} \
-		MIPWrangler mipSetupAndExtractByArm --mipArmsFilename /opt/analysis/mip_ids/mipArms.txt --mipSampleFile /opt/analysis/mip_ids/allMipsSamplesNames.tab.txt --numThreads {threads} --masterDir {params.output_dir} --dir /opt/data --mipServerNumber 1 --minCaptureLength=30
+		MIPWrangler mipSetupAndExtractByArm  --keepIntermediateFiles --mipArmsFilename /opt/analysis/mip_ids/mipArms.txt --mipSampleFile /opt/analysis/mip_ids/allMipsSamplesNames.tab.txt --numThreads {threads} --masterDir {params.output_dir} --dir /opt/data --mipServerNumber 1 --minCaptureLength=30
 		touch {output.extraction_finished}
 		'''
 
@@ -81,7 +81,7 @@ rule mip_barcode_correction_multiple:
 		singularity exec \
 		-B {params.wrangler_dir}:/opt/analysis \
 		{params.sif_file} \
-		MIPWrangler mipBarcodeCorrectionMultiple --masterDir {params.output_dir} --numThreads {threads} --overWriteDirs --overWriteLog --logFile mipBarcodeCorrecting_run1 --allowableErrors 6
+		MIPWrangler mipBarcodeCorrectionMultiple --keepIntermediateFiles --masterDir {params.output_dir} --numThreads {threads} --overWriteDirs --overWriteLog --logFile mipBarcodeCorrecting_run1 --allowableErrors 6
 		touch {output.correction_finished}
 		'''
 
@@ -104,29 +104,29 @@ rule mip_correct_for_contam_with_same_barcodes_multiple:
 		touch {output.correction_contam_finished}
 		'''
 
-rule wrangler_downsample_umi:
-	input:
-		correction_contam_finished=nested_output+'/correction_contam_finished.txt'
-	output:
-		downsampling_finished=nested_output+'/downsampling_finished.txt'
-	threads: config['cpu_count']
-	params:
-		output_dir='/opt/analysis/analysis',
-		wrangler_dir=nested_output,
-		sif_file=config['miptools_sif'],
-		downsample_threshold=config['umi_threshold']
-	shell:
-		'''
-		singularity exec \
-		-B {params.wrangler_dir}:/opt/analysis \
-		{params.sif_file} \
-		find {params.output_dir} -type f -path '*mipBarcodeCorrection/*.fastq.gz' -exec python /opt/src/wrangler_downsample_umi.py --cpu-count {threads} --downsample-threshold {params.downsample_threshold} '' {{}} +
-		touch {output.downsampling_finished}
-		'''
+#rule wrangler_downsample_umi:
+#	input:
+#		correction_contam_finished=nested_output+'/correction_contam_finished.txt'
+#	output:
+#		downsampling_finished=nested_output+'/downsampling_finished.txt'
+#	threads: config['cpu_count']
+#	params:
+#		output_dir='/opt/analysis/analysis',
+#		wrangler_dir=nested_output,
+#		sif_file=config['miptools_sif'],
+#		downsample_threshold=config['umi_threshold']
+#	shell:
+#		'''
+#		singularity exec \
+#		-B {params.wrangler_dir}:/opt/analysis \
+#		{params.sif_file} \
+#		find {params.output_dir} -type f -path '*mipBarcodeCorrection/*.fastq.gz' -exec python /opt/src/wrangler_downsample_umi.py --cpu-count {threads} --downsample-threshold {params.downsample_threshold} '' {{}} +
+#		touch {output.downsampling_finished}
+#		'''
 
 rule mip_clustering_multiple:
 	input:
-		downsampling_finished=nested_output+'/downsampling_finished.txt'
+		downsampling_finished=nested_output+'/correction_contam_finished.txt'
 	output:
 		mip_clustering=nested_output+'/mip_clustering_finished.txt'
 	threads: config['cpu_count']
@@ -139,7 +139,7 @@ rule mip_clustering_multiple:
 		singularity exec \
 		-B {params.wrangler_dir}:/opt/analysis \
 		{params.sif_file} \
-		MIPWrangler mipClusteringMultiple --masterDir {params.output_dir} --numThreads {threads} --overWriteDirs --overWriteLog --logFile mipClustering_run1 --par /opt/resources/clustering_pars/illumina_collapseHomoploymers.pars.txt --countEndGaps
+		MIPWrangler mipClusteringMultiple --keepIntermediateFiles --masterDir {params.output_dir} --numThreads {threads} --overWriteDirs --overWriteLog --logFile mipClustering_run1 --par /opt/resources/clustering_pars/illumina_collapseHomoploymers.pars.txt --countEndGaps
 		touch {output.mip_clustering}
 		'''
 
@@ -158,7 +158,7 @@ rule mip_population_clustering_multiple:
 		singularity exec \
 		-B {params.wrangler_dir}:/opt/analysis \
 		{params.sif_file} \
-		MIPWrangler mipPopulationClusteringMultiple --masterDir {params.output_dir} --numThreads {threads} --overWriteDirs --overWriteLog --logFile mipPopClustering_run1 --cutoff 0 --countEndGaps --fraccutoff 0.005
+		MIPWrangler mipPopulationClusteringMultiple --keepIntermediateFiles --masterDir {params.output_dir} --numThreads {threads} --overWriteDirs --overWriteLog --logFile mipPopClustering_run1 --cutoff 0 --countEndGaps --fraccutoff 0.005
 		touch {output.pop_clustering}
 		'''
 

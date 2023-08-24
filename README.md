@@ -1,5 +1,13 @@
 # wrangler_snakemake
 
+This program is mostly superseded by the program wrangler_by_sample (available
+here):
+https://github.com/bailey-lab/wrangler_by_sample
+
+However, this program is useful mostly for troubleshooting purposes - its
+outputs (with a slightly different extractor) serve as a comparison against
+wrangler_by_sample
+
 This program takes the C++ functions written by Nick Hathaway for miptools
 wrangler and runs them as independent rules in snakemake. This allows us to
 benchmark which steps take what amounts of resources, and to run separate steps

@@ -1,8 +1,8 @@
 #folder where your output will go
-output_folder: /nfs/jbailey5/baileyweb/asimkin/miptools/Mikalayi_TES/all_study_sites_DR2_200000000000000000umi_10_cpu
+output_folder: /nfs/jbailey5/baileyweb/asimkin/miptools/miptools_tutorial/test-data/wrangler3
 
 #subfolder where wrangler analysis files will go
-analysis_dir: snakemake_oscar
+analysis_dir: snakemake_mouse
 
 #number of umis to include for each mip (higher expressed umis have a higher
 #chance of being included than lower expressed ones)
@@ -12,25 +12,25 @@ umi_threshold: 200000000000000000
 cpu_count: 10
 
 #location of sample sheet
-input_sample_sheet: /nfs/jbailey5/baileyweb/asimkin/miptools/Mikalayi_TES/run_merger/output_files/manually_curated_sample_sheets/mikalayi_merged_sample_sheet_all_sites.tsv
+input_sample_sheet: /nfs/jbailey5/baileyweb/asimkin/miptools/miptools_tutorial/test-data/test_data/sample_list.tsv
 
 #location of project resources
-project_resources: /nfs/jbailey5/baileyweb/bailey_share/resources/MIP_project_resources/DR2
+project_resources: /nfs/jbailey5/baileyweb/asimkin/miptools/miptools_tutorial/test-data/DR1_project_resources
 
-#location of output fastq file
-fastq_dir: /nfs/jbailey5/baileyweb/asimkin/miptools/Mikalayi_TES/run_merger/output_files/230101_merging/mergedfastq
+#location of input fastq file
+fastq_dir: /nfs/jbailey5/baileyweb/asimkin/miptools/miptools_tutorial/test-data/test_data/fastq
 
 #location of sif file to use
 miptools_sif: /nfs/jbailey5/baileyweb/bailey_share/bin/miptools_dev_23-07-18.sif
 
 #probe sets to analyze from the sample sheet
-probe_sets_used: DR2
+probe_sets_used: DR1
 
 #sample sets to analyze from the sample sheet
 sample_sets_used: JJJ
 
 #a name for the output files
-experiment_id: 230720
+experiment_id: 230824
 
 #minimum size of haplotype to consider
 min_capture_length: 30
